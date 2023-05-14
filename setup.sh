@@ -114,3 +114,6 @@ chmod +x /root/.acme.sh/acme.sh
 ~/.acme.sh/acme.sh --installcert -d $domain --fullchainpath /etc/xray/xray.crt --keypath /etc/xray/xray.key --ecc
 echo -e "${OKEY} Your Domain : $domain"
 sleep 2
+wget -q -O alat.sh https://raw.githubusercontent.com/baconfig/config/main/alat.sh
+wget -q -O allmenu.sh https://raw.githubusercontent.com/baconfig/config/main/allmenu.sh
+wget -q -O ins-xray.sh https://raw.githubusercontent.com/baconfig/config/main/ins-xray.sh
