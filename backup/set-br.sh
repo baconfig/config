@@ -40,10 +40,10 @@ logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
 cd /usr/bin
-wget -O autobackup "http://install.yudhy.net/backup/autobackup.sh"
-wget -O backup "http://install.yudhy.net/backup/backup.sh"
-wget -O restore "http://install.yudhy.net/backup/restore.sh"
-wget -O limitspeed "http://install.yudhy.net/backup/limitspeed.sh"
+wget -O autobackup "https://raw.githubusercontent.com/baconfig/config/main/backup/autobackup.sh"
+wget -O backup "https://raw.githubusercontent.com/baconfig/config/main/backup/backup.sh"
+wget -O restore "https://raw.githubusercontent.com/baconfig/config/main/backup/restore.sh"
+wget -O limitspeed "https://raw.githubusercontent.com/baconfig/config/main/backup/limitspeed.sh"
 chmod +x autobackup
 chmod +x backup
 chmod +x restore
