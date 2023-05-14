@@ -118,3 +118,132 @@ wget -q -O alat.sh https://raw.githubusercontent.com/baconfig/config/main/alat.s
 wget -q -O allmenu.sh https://raw.githubusercontent.com/baconfig/config/main/allmenu.sh
 wget -q -O ins-xray.sh https://raw.githubusercontent.com/baconfig/config/main/ins-xray.sh
 sleep 1
+IP=$(echo $SSH_CLIENT | awk '{print $1}')
+TMPFILE='/tmp/ipinfo-$DATE_EXEC.txt'
+curl http://ipinfo.io/$IP -s -o $TMPFILE
+ORG=$(cat $TMPFILE | jq '.org' | sed 's/"//g')
+domain=$(cat /etc/xray/domain)
+LocalVersion=$(cat /root/versi)
+IPVPS=$(curl -s ipinfo.io/ip )
+ISPVPS=$( curl -s ipinfo.io/org )
+token=6284334892:AAF3KT10EZrFghut7-0Y1Jl89hXYfOt1dQg
+chatid=1866893892
+ttoday="$(vnstat | grep today | awk '{print $8" "substr ($9, 1, 3)}' | head -1)"
+tmon="$(vnstat -m | grep date +%G-%m | awk '{print $8" "substr ($9, 1 ,3)}' | head -1)"
+DATE_EXEC="$(date "+%d %b %Y %H:%M")"
+CITY=$(cat $TMPFILE | jq '.city' | sed 's/"//g')
+REGION=$(cat $TMPFILE | jq '.region' | sed 's/"//g')
+COUNTRY=$(cat $TMPFILE | jq '.country' | sed 's/"//g')
+curl -s -X POST "https://api.telegram.org/bot$token/sendMessage" -d chat_id="$chatid" -d text="
+Tes bot $IPVPS domain $domain telah menginstal menggunakan scrip installermu pada $DATE_EXEC di $CITY, $REGION via $ORG" > /dev/null 2>&1
+clear
+cat > /etc/cron.d/xp_otm <<-END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+2 0 * * * root /usr/bin/xp
+END
+cat > /etc/cron.d/cl_otm <<-END
+SHELL=/bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+2 1 * * * root /usr/bin/clearlog
+END
+echo "59 * * * * root killall /bin/bash /usr/bin/menu" >> /etc/crontab
+cat > /home/re_otm <<-END
+7
+END
+service cron restart >/dev/null 2>&1
+service cron reload >/dev/null 2>&1
+clear
+cat> /root/.profile << END
+if [ "$BASH" ]; then
+if [ -f ~/.bashrc ]; then
+. ~/.bashrc
+fi
+fi
+mesg n || true
+clear
+menu
+END
+chmod 644 /root/.profile
+if [ -f "/root/log-install.txt" ]; then
+rm -fr /root/log-install.txt
+fi
+if [ -f "/etc/afak.conf" ]; then
+rm -fr /etc/afak.conf
+fi
+if [ ! -f "/etc/log-create-user.log" ]; then
+echo "Log All Account " > /etc/log-create-user.log
+fi
+history -c
+aureb=$(cat /home/re_otm)
+b=11
+if [ $aureb -gt $b ]
+then
+gg="PM"
+else
+gg="AM"
+fi
+cd
+echo "1.1" >> /home/.ver
+rm -fr /root/limit
+curl -sS ifconfig.me > /etc/myipvps
+clear
+echo "checking update..."
+sleep 1
+updatsc
+cd
+echo " "
+echo "==============-[   YADDY D PHREAKER  ]-============="
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+echo "   >>> Service & Port"  | tee -a log-install.txt
+echo "   - Nginx                   : 81" | tee -a log-install.txt
+echo "   - XRAY  Vmess TLS         : 443" | tee -a log-install.txt
+echo "   - XRAY  Vmess None TLS    : 80" | tee -a log-install.txt
+echo "   - XRAY  Vless TLS         : 443" | tee -a log-install.txt
+echo "   - XRAY  Vless None TLS    : 80" | tee -a log-install.txt
+echo "   - Trojan GRPC             : 443" | tee -a log-install.txt
+echo "   - Trojan WS               : 443" | tee -a log-install.txt
+echo "   - Trojan GO               : 443" | tee -a log-install.txt
+echo "   - Sodosok WS/GRPC         : 443" | tee -a log-install.txt
+echo ""  | tee -a log-install.txt
+echo "   >>> Server Information & Other Features"  | tee -a log-install.txt
+echo "   - Timezone                : Asia/Jakarta (GMT +7)"  | tee -a log-install.txt
+echo "   - Fail2Ban                : [ON]"  | tee -a log-install.txt
+echo "   - Dflate                  : [ON]"  | tee -a log-install.txt
+echo "   - IPtables                : [ON]"  | tee -a log-install.txt
+echo "   - Auto-Reboot             : [ON]"  | tee -a log-install.txt
+echo "   - IPv6                    : [OFF]"  | tee -a log-install.txt
+echo "   - Autobackup Data" | tee -a log-install.txt
+echo "   - AutoKill Multi Login User" | tee -a log-install.txt
+echo "   - Auto Delete Expired Account" | tee -a log-install.txt
+echo "   - Fully automatic script" | tee -a log-install.txt
+echo "   - VPS settings" | tee -a log-install.txt
+echo "   - Admin Control" | tee -a log-install.txt
+echo "   - Full Orders For Various Services" | tee -a log-install.txt
+echo ""
+echo ""
+echo "------------------------------------------------------------"
+echo ""
+echo "===========-[ YADDY KAKKOII MAGELANG  ]-==========="
+echo -e ""
+echo ""
+echo "" | tee -a log-install.txt
+rm -f /root/alat.sh
+rm -f /root/ssh-vpn.sh
+rm -f /root/ins-xray.sh
+rm -f /root/setup.sh
+rm -f /root/domain
+rm -f /root/allmenu.sh
+rm -f /root/xraymode.sh
+rm -f /root/xray.conf
+history -c
+secs_to_human "$(($(date +%s) - ${start}))"
+echo -e "${YB}[ WARNING ] reboot now ? (Y/N)${NC} "
+read answer
+if [ "$answer" == "${answer#[Yy]}" ] ;then
+exit 0
+else
+reboot
+fi
