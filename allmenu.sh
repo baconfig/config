@@ -40,6 +40,7 @@ wget -q -O /usr/bin/update "https://raw.githubusercontent.com/baconfig/config/ma
 wget -q -O /etc/issue.net "https://raw.githubusercontent.com/baconfig/config/main/menu/issue.net"
 wget -q -O /root/versi "https://raw.githubusercontent.com/baconfig/config/main/versibasic"
 wget -q -O /usr/bin/updatsc "https://raw.githubusercontent.com/baconfig/config/main/update.sh"
+wget -q -O /usr/bin/menu-backup "https://raw.githubusercontent.com/baconfig/config/main/menu/menu-backup.sh"
 chmod +x /usr/bin/menu
 chmod +x /usr/bin/add-ws
 chmod +x /usr/bin/add-ssws
