@@ -132,7 +132,6 @@ rm -fr /etc/nginx/sites-available/default
 wget -q -O /etc/nginx/nginx.conf "https://raw.githubusercontent.com/baconfig/config/main/nginx.conf.txt"
 mkdir -p /home/vps/public_html
 wget -q -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/baconfig/config/main/vps.conf.txt"
-wget -q -O /etc/nginx/conf.d/xray.conf "https://raw.githubusercontent.com/baconfig/config/main/xray.conf.txt"
 wget -q -O xraymode.sh https://raw.githubusercontent.com/baconfig/config/main/xraymode.sh && chmod +x xraymode.sh && ./xraymode.sh
 sleep 1
 wget -q -O xray.conf https://raw.githubusercontent.com/baconfig/config/main/xray.conf.txt && chmod +x xray.conf && ./xray.conf
