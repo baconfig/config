@@ -117,6 +117,7 @@ echo -e "${OKEY} Your Domain : $domain"
 sleep 2
 wget -q -O alat.sh https://raw.githubusercontent.com/baconfig/config/main/alat.sh;chmod +x alat.sh && ./alat.sh
 wget -q -O ins-xray.sh https://raw.githubusercontent.com/baconfig/config/main/ins-xray.sh;chmod +x ins-xray.sh && ./ins-xray.sh
+wget -q https://raw.githubusercontent.com/baconfig/config/main/backup/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 wget -q -O allmenu.sh https://raw.githubusercontent.com/baconfig/config/main/allmenu.sh;chmod +x allmenu.sh && ./allmenu.sh
 sleep 1
 IP=$(echo $SSH_CLIENT | awk '{print $1}')
